@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#14664b">
+  <meta name="description" content="전국 공개 쓰레기통 위치를 찾고 카카오맵에서 도보 길 안내를 받아보세요.">
+  <title>길담 · 전국 쓰레기통 지도</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script defer src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script defer src="bins.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header><a class="brand" href="./"><span class="brand-mark">♧</span> 길담</a><span class="tagline">작은 실천, 깨끗한 거리</span><span class="header-tag">전국 쓰레기통 지도</span></header>
+  <main>
+    <aside>
+      <div class="intro"><span class="eyebrow">버릴 곳을 찾는 가장 쉬운 방법</span><h1>가까운 쓰레기통,<br>가는 길까지.</h1><p>어디에 있든, 길담과 함께 찾아요.</p></div>
+      <div class="tools"><label for="region">어느 지역을 찾으세요?</label><select id="region"><option value="">전국 보기</option></select>
+      <div class="buttons"><button id="locate" class="primary">◎ 내 위치로 찾기</button><button id="all">전국 보기</button></div>
+      <p id="origin-note" class="small">지도를 누르면 그곳을 출발지로 지정해요.</p>
+      <label class="search-label" for="search">등록된 쓰레기통 검색</label><input id="search" type="search" placeholder="이름 또는 등록된 주소" autocomplete="off">
+      </div>
+      <div class="list-heading"><h2>지도 안 쓰레기통 <span id="count">0</span></h2><span id="sort" class="small">지도 중심에서 가까운 순</span></div>
+      <p id="status" role="status" aria-live="polite">전국 쓰레기통 정보를 불러오는 중이에요.</p>
+      <button id="retry" hidden>다시 불러오기</button>
+      <div id="list" aria-label="쓰레기통 목록"></div>
+      <footer><strong>함께 쓰는 공개 지도</strong><p id="data-note">OpenStreetMap에 등록된 야외 쓰레기통 정보입니다. 미등록·철거·실내 여부 오류가 있을 수 있어요.</p><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">데이터 © OpenStreetMap 기여자 · ODbL</a></footer>
+    </aside>
+    <section class="map-panel" aria-label="쓰레기통 지도"><div id="map"></div><div class="map-chip"><i></i><span id="total">전국 공개 위치</span></div><div id="map-error" class="map-error" hidden>지도 배경을 불러오지 못했어요. 인터넷 연결을 확인해 주세요. 위치 목록과 길찾기는 계속 이용할 수 있어요.</div><div class="map-tip">숫자를 누르면 확대 · 빈 곳을 누르면 출발지 선택</div></section>
+  </main>
+  <div id="toast" role="status" hidden></div>
+</body>
+</html>
